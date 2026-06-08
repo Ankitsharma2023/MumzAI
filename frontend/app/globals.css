@@ -1,0 +1,198 @@
+:root {
+  /* Mumzworld brand */
+  --pink: #e60058;          /* --color-primary-high from mumzworld.com */
+  --pink-dark: #c2004a;     /* hover/active */
+  --pink-tint: #fff1f6;     /* light pink surfaces */
+  --pink-line: #fbd0e2;     /* light pink borders */
+  --white: #ffffff;
+  --ink: #1f2330;
+  --muted: #6b7280;
+  --grey: #94969e;          /* --color-least (disabled) */
+  --line: #ececf0;
+  --shadow: 0 6px 24px rgba(230, 0, 88, 0.08);
+  --radius: 8px;            /* --radius-md */
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--white);
+  color: var(--ink);
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+.page {
+  max-width: 860px;
+  margin: 0 auto;
+  height: 100vh;          /* fixed viewport height so the composer stays pinned */
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+}
+
+/* ---- Header ---- */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.brand { display: flex; align-items: center; gap: 12px; }
+.brand-logo-img { height: 30px; width: auto; display: block; }
+.brand-reset { background: none; border: none; padding: 0; cursor: pointer; display: flex; align-items: center; }
+.brand-reset:hover { opacity: .85; }
+.brand-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--pink-tint); color: var(--pink);
+  font-size: 12px; font-weight: 700; padding: 5px 10px; border-radius: 999px;
+}
+.brand-pill img { width: 16px; height: 16px; }
+.lang-btn {
+  border: 1px solid var(--pink); background: var(--white);
+  color: var(--pink); font-weight: 700; cursor: pointer;
+  padding: 9px 16px; border-radius: var(--radius); font-size: 14px;
+  font-family: inherit; transition: background .15s, color .15s;
+}
+.lang-btn:hover { background: var(--pink); color: var(--white); }
+
+/* ---- Chat area ---- */
+.chat {
+  flex: 1;
+  margin-top: 14px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px;
+  overflow-y: auto;
+  min-height: 0;          /* lets the chat scroll INSIDE instead of growing the page */
+  scroll-behavior: smooth;
+  scrollbar-width: none;        /* Firefox: hide scrollbar */
+  -ms-overflow-style: none;     /* old Edge/IE: hide scrollbar */
+}
+.chat::-webkit-scrollbar { width: 0; height: 0; display: none; }  /* Chrome/Safari: hide scrollbar */
+.msg { margin-bottom: 18px; display: flex; flex-direction: column; }
+.msg-user { align-items: flex-end; }
+.msg-head { display: flex; align-items: center; gap: 8px; margin: 0 2px 5px; }
+.avatar { width: 38px; height: 38px; border-radius: 50%; display: block; background: #fff; border: 1px solid var(--pink-line); padding: 4px; object-fit: contain; }
+.who { font-size: 12px; color: var(--muted); font-weight: 600; }
+
+.bubble {
+  padding: 12px 15px; border-radius: 14px; max-width: 82%;
+  line-height: 1.55; white-space: pre-wrap;
+}
+.msg-user .bubble { background: var(--pink); color: var(--white); border-bottom-right-radius: 4px; }
+.msg-bot  .bubble { background: var(--pink-tint); color: var(--ink); border-bottom-left-radius: 4px; }
+
+.safety {
+  margin-top: 10px; padding: 10px 12px; border-radius: var(--radius);
+  background: #fff6e6; border: 1px solid #ffe2ad; color: #8a6d1f; font-size: 14px;
+}
+.hl { color: var(--pink); font-weight: 700; }   /* highlights in answers — Mumzworld pink #e60058 */
+
+/* Clarifying questions (MCQ) */
+.clarify { margin-top: 12px; background: #fff; border: 1px solid var(--pink-line); border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 14px; }
+.clarify-qtext { font-weight: 700; font-size: 14px; margin-bottom: 7px; }
+.clarify-opts { display: flex; flex-wrap: wrap; gap: 8px; }
+.clarify-opt { border: 1px solid var(--pink-line); background: #fff; color: var(--ink); padding: 7px 13px; border-radius: 999px; font-size: 13px; cursor: pointer; font-family: inherit; transition: background .12s, color .12s, border-color .12s; }
+.clarify-opt:hover { border-color: var(--pink); }
+.clarify-opt.sel { background: var(--pink); color: #fff; border-color: var(--pink); }
+.clarify-go { align-self: flex-start; border: none; background: var(--pink); color: #fff; font-weight: 700; padding: 9px 18px; border-radius: var(--radius); cursor: pointer; font-size: 14px; font-family: inherit; }
+.clarify-go:hover:not(:disabled) { background: var(--pink-dark); }
+.clarify-go:disabled { background: var(--grey); cursor: not-allowed; }
+.meta { font-size: 11px; color: var(--muted); margin-top: 8px; }
+.badge-conf { font-weight: 800; text-transform: uppercase; letter-spacing: .03em; }
+.conf-high { color: #2e9e5b; } .conf-medium { color: #c08a1e; } .conf-low { color: var(--pink); }
+
+/* ---- Product cards ---- */
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 12px; margin-top: 12px; }
+.card { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: #fff; display: flex; flex-direction: column; transition: box-shadow .15s, transform .15s; text-decoration: none; color: var(--ink); }
+.card-link { font-size: 11px; color: var(--pink); font-weight: 700; margin-top: 6px; }
+.card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+.card img { width: 100%; height: 130px; object-fit: cover; display: block; }
+.card-body { padding: 11px 13px; display: flex; flex-direction: column; gap: 5px; }
+.card-brand { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; font-weight: 600; }
+.card-name { font-size: 13px; font-weight: 700; line-height: 1.3; min-height: 34px; }
+.price-row { display: flex; align-items: baseline; gap: 8px; }
+.price { font-weight: 800; color: var(--pink); }
+.price-was { font-size: 12px; color: var(--muted); text-decoration: line-through; }
+.tabby { font-size: 11px; color: var(--ink); opacity: .75; }
+.chips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; }
+.chip { font-size: 10px; padding: 3px 8px; border-radius: 999px; background: var(--pink-tint); color: var(--pink); font-weight: 700; }
+.chip-isofix { background: #e7f0ff; color: #2d5bbf; }
+.chip-stock { background: #e7f7ec; color: #2e9e5b; }
+.chip-oos { background: #fdeaea; color: #c0492e; }
+.rating { font-size: 12px; color: #f5a623; font-weight: 700; }
+
+/* Review icon button on the card */
+.rating-btn { display: inline-flex; align-items: center; gap: 5px; align-self: flex-start; background: none; border: none; padding: 2px 0; cursor: pointer; color: #f5a623; font-weight: 700; font-size: 12px; font-family: inherit; }
+.rating-btn:hover { text-decoration: underline; }
+.rating-btn .rating-count { color: var(--muted); font-weight: 600; }
+.feedback-link { align-self: flex-start; background: none; border: none; padding: 0; margin-top: 2px; color: var(--pink); font-weight: 700; font-size: 12px; cursor: pointer; font-family: inherit; }
+.feedback-link:hover { text-decoration: underline; }
+
+/* Reviews modal */
+.modal-backdrop { position: fixed; inset: 0; background: rgba(31,35,48,.45); display: flex; align-items: center; justify-content: center; z-index: 100; padding: 16px; }
+.modal { background: #fff; border-radius: 14px; width: 100%; max-width: 440px; max-height: 80vh; overflow-y: auto; padding: 18px 20px; box-shadow: 0 20px 60px rgba(0,0,0,.28); }
+.modal-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.modal-eyebrow { font-size: 11px; font-weight: 700; color: var(--pink); text-transform: uppercase; letter-spacing: .04em; }
+.modal-title { font-weight: 800; font-size: 15px; line-height: 1.3; margin-top: 2px; }
+.modal-close { border: none; background: none; font-size: 26px; line-height: 1; cursor: pointer; color: var(--muted); padding: 0 4px; }
+.modal-close:hover { color: var(--ink); }
+.modal-rating { color: #f5a623; font-weight: 700; font-size: 13px; margin: 8px 0 14px; }
+.modal-reviews { display: flex; flex-direction: column; gap: 11px; }
+.review-item { border: 1px solid var(--line); border-radius: 10px; padding: 11px 13px; }
+.review-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.review-stars { color: #f5a623; font-size: 12px; letter-spacing: 1px; }
+.review-text { font-size: 14px; color: var(--ink); margin: 6px 0 0; line-height: 1.5; }
+.review-author { font-size: 12px; color: var(--ink); font-weight: 600; }
+.review-empty { color: var(--muted); font-size: 14px; }
+
+/* ---- Suggestions + composer ---- */
+.suggestions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.suggestion {
+  border: 1px solid var(--pink-line); background: #fff; cursor: pointer;
+  padding: 8px 13px; border-radius: 999px; font-size: 13px; color: var(--pink);
+  font-family: inherit; font-weight: 600; transition: background .15s, color .15s;
+}
+.suggestion:hover { background: var(--pink); color: #fff; border-color: var(--pink); }
+.suggestion:disabled { opacity: .5; cursor: not-allowed; }
+
+.composer { display: flex; gap: 10px; margin-top: 12px; }
+.composer input {
+  flex: 1; padding: 14px 16px; border-radius: var(--radius);
+  border: 1px solid var(--line); font-size: 15px; outline: none; background: #fff;
+  font-family: inherit;
+}
+.composer input:focus { border-color: var(--pink); box-shadow: 0 0 0 3px rgba(230,0,88,.12); }
+.composer button {
+  border: none; background: var(--pink); color: #fff; font-weight: 700;
+  padding: 0 24px; border-radius: var(--radius); cursor: pointer; font-size: 15px;
+  font-family: inherit; transition: background .15s;
+}
+.composer button:hover:not(:disabled) { background: var(--pink-dark); }
+.composer button:disabled { background: var(--grey); cursor: not-allowed; }
+
+/* Voice / mic button (outline; pulses pink while listening) */
+.composer .mic-btn { background: #fff; color: var(--pink); border: 1px solid var(--pink); width: 52px; padding: 0; border-radius: var(--radius); cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.composer .mic-btn:hover:not(:disabled) { background: var(--pink-tint); }
+.composer .mic-btn:disabled { background: #fff; opacity: .5; cursor: not-allowed; }
+.composer .mic-btn.mic-on { background: var(--pink); color: #fff; animation: pulse 1.2s ease-in-out infinite; }
+
+.empty { color: var(--muted); text-align: center; padding: 34px 10px; }
+.dots::after { content: "…"; animation: blink 1.2s infinite; }
+@keyframes blink { 0%,100%{opacity:.3} 50%{opacity:1} }
+.loading-line { padding: 4px 2px; }   /* no bubble — just pink text on white */
+.loading-msg { color: var(--pink); font-weight: 700; animation: pulse 1.4s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{opacity:.55} 50%{opacity:1} }
+
+/* ---- RTL (Arabic) ---- */
+[dir="rtl"] .msg-user { align-items: flex-start; }
+[dir="rtl"] .msg-user .bubble { border-radius: 14px; border-bottom-left-radius: 4px; }
+[dir="rtl"] .msg-bot .bubble { border-radius: 14px; border-bottom-right-radius: 4px; }

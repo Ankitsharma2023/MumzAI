@@ -1,0 +1,15 @@
+[
+  {"query": "safe car seat for my newborn", "expected": ["MW-CS-001", "MW-CS-002", "MW-CS-003", "MW-CS-005"]},
+  {"query": "ISOFIX car seat with 360 rotation", "expected": ["MW-CS-003", "MW-CS-005", "MW-CS-002"]},
+  {"query": "cheap booster seat for a 6 year old", "expected": ["MW-CS-006"]},
+  {"query": "lightweight stroller for travel", "expected": ["MW-ST-002", "MW-ST-001", "MW-ST-004"]},
+  {"query": "stroller that handles the Dubai heat", "expected": ["MW-ST-004"]},
+  {"query": "all terrain pram for outdoor walks", "expected": ["MW-ST-003"]},
+  {"query": "formula for a newborn 0-6 months", "expected": ["MW-BF-001"]},
+  {"query": "lactose free baby milk", "expected": ["MW-BF-004"]},
+  {"query": "toddler growing up milk", "expected": ["MW-BF-003"]},
+  {"query": "wifi video baby monitor with app", "expected": ["MW-BM-003"]},
+  {"query": "affordable audio baby monitor", "expected": ["MW-BM-001"]},
+  {"query": "baby shower gift under AED 200", "expected": ["MW-GS-003"]},
+  {"query": "newborn gift box for a baby shower", "expected": ["MW-GS-001", "MW-GS-002", "MW-GS-003"]}
+]

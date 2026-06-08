@@ -1,0 +1,20 @@
+# Web framework
+fastapi>=0.110
+uvicorn[standard]>=0.29
+
+# Data validation
+pydantic>=2.6
+
+# Config
+python-dotenv>=1.0
+
+# Catalog database (MongoDB Atlas)
+pymongo>=4.7
+
+# Vector store (semantic search) — embeddings come from the Gemini API (no torch)
+chromadb>=0.5
+
+# AI providers
+google-genai>=0.3        # Gemini (default, free)
+anthropic>=0.40          # Claude (optional one-line switch)
+openai>=1.40             # OpenAI (optional provider)
